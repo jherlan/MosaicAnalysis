@@ -38,6 +38,7 @@ IndPatchSize=function(X,Y,Z){
   # analysis
 
   masterfile=readPNG(X)
+  copy_master=masterfile
   cat(paste('I am currenlty working on this image: ',X,sep=''),fill=T)
   step=1
   base_num=0
@@ -95,7 +96,9 @@ IndPatchSize=function(X,Y,Z){
 
         line_max=min(c(Height,centroid[1]+dim(ID)[1]))
         col_max=min(c(Width,centroid[2]+dim(ID)[2]))
-
+        copy_master[(line_max-dim(ID)[1]+1):line_max,(col_max-dim(ID)[2]+1):col_max,1]=ID[,,1]
+        copy_master[(line_max-dim(ID)[1]+1):line_max,(col_max-dim(ID)[2]+1):col_max,2]=ID[,,2]
+        copy_master[(line_max-dim(ID)[1]+1):line_max,(col_max-dim(ID)[2]+1):col_max,3]=ID[,,3]
         test[(line_max-dim(ID)[1]+1):line_max,(col_max-dim(ID)[2]+1):col_max]=ID[,,1]
       }
       close(pb)
@@ -114,8 +117,9 @@ IndPatchSize=function(X,Y,Z){
   }
 
   quad_data=quad_data[-1,]
-  writeJPEG(test,paste(Z,'_with_ID.jpeg',sep=''))
-
+  writeJPEG(test,paste(Z,'_BW_with_ID.jpeg',sep=''))
+  writeJPEG(copy_master,paste(Z,'_color_with_ID.jpeg',sep=''))
+  copy_master
   #mat_dist=as.matrix(dist(cbind(as.numeric(as.character(quad_data$x)),as.numeric(as.character(quad_data$y)))))
   #colnames(mat_dist)=quad_data$patch_ID
   #diag(mat_dist)=NA
