@@ -60,7 +60,8 @@ IndPatchSize=function(X,Y,Z){
       colony_names=colony_names[!is.na(colony_names)]
       Height=nrow(named_layer)
       Width=ncol(named_layer)
-      if(step==1){test=named_layer}else{
+      if(step==1){test=named_layer
+      step=step+1 }else{
         test=test
         step=step+1
       }
