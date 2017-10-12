@@ -16,9 +16,9 @@ IndPatchSize=function(X,Y,Z){
   require(raster)
   require(foreach)
 
-  X='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/MAI_2016_cropped.png'
-  Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
-  Z='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/RESULT'
+  #X='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/MAI_2016_cropped.png'
+  #Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
+  #Z='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/RESULT'
 
 
 
