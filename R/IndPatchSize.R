@@ -11,6 +11,7 @@
 
 
 IndPatchSize=function(X,Y,Z){
+  gc()
   require(jpeg)
   require(png)
   require(raster)
@@ -119,7 +120,7 @@ cat('- Analysis started -',fill=T)
 
     species_result=as.data.frame(foreach(j=1:length(colony_names),.combine=rbind)%do%{
       pos_2D=as.numeric(round(apply(which(named_layer==colony_names[j],arr.ind=T),2,mean)))
-      cbind(rownames(species)[ii],colony_names[j],pos_2D[2],pos_2D[1],length(which(array(extract[which(named_layer==colony_names[j])])==1)))
+      cbind(rownames(species)[ii],colony_names[j],pos_2D[2],pos_2D[1],length(which(array(sp_mat[which(named_layer==colony_names[j])])==1)))
     })
     colnames(species_result)=c('Group','patch_ID','x','y','area_in_pix_num')
     rownames(species_result)=NULL
