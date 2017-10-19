@@ -16,11 +16,11 @@ IndPatchSize=function(X,Y,Z){
   require(raster)
   require(foreach)
   require(slam)
-  X='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/MAI_2016.png'
-  Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
-  Z='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/RESULT'
+  #X='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/MAI_2016.png'
+  #Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
+  #Z='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/RESULT'
 
-
+cat('- Analysis started -',fill=T)
 
   list_species=dir(Y,pattern='png')
   if(length(list_species)==1){
@@ -54,7 +54,7 @@ IndPatchSize=function(X,Y,Z){
     if(length(adonde_coral)>1){
       extract[adonde_coral]=ii
     }}
-  remove(masterfile)
+  remove(masterfile,adonde_coral)
   gc()
 
   present_species=unique(array(extract))
