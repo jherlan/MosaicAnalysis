@@ -15,7 +15,7 @@ IndPatchSize=function(X,Y,Z){
   require(png)
   require(raster)
   require(foreach)
-  require(slam)
+  require(Matrix)
   #X='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/MAI_2016.png'
   #Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
   #Z='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/RESULT'
