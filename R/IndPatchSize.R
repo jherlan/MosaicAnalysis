@@ -104,6 +104,7 @@ IndPatchSize=function(X,Y,Z){
       close(pb)
       unlink('name/', recursive = TRUE)
 
+
       species_result=as.data.frame(foreach(j=1:length(colony_names),.combine=rbind)%do%{
         pos_2D=as.numeric(round(apply(which(named_layer==colony_names[j],arr.ind=T),2,mean)))
         cbind(rownames(species)[ii],colony_names[j],pos_2D[2],pos_2D[1],length(which(array(extract[which(named_layer==colony_names[j])])==1)))
@@ -113,7 +114,8 @@ IndPatchSize=function(X,Y,Z){
       base_num=max(colony_names)
       quad_data=rbind(quad_data,species_result)
     }
-
+    remove(named_layer)
+    gc()
   }
 
   quad_data=quad_data[-1,]
