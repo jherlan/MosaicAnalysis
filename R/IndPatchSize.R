@@ -67,7 +67,7 @@ cat('- Analysis started -',fill=T)
     AA=raster(as.matrix(sp_mat))
     BB=clump(AA)
     named_layer=t(matrix(BB,ncol(BB),nrow(BB)))
-    remove(AA,BB,sp_mat)
+    remove(AA,BB)
     gc()
     named_layer=named_layer+base_num
     colony_names=unique(array(named_layer))
@@ -126,7 +126,7 @@ cat('- Analysis started -',fill=T)
     rownames(species_result)=NULL
     base_num=max(colony_names)
     quad_data=rbind(quad_data,species_result)
-    remove(named_layer)
+    remove(named_layer,sp_mat)
     gc()
   }
 
