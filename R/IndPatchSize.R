@@ -63,8 +63,10 @@ cat('- Analysis started - v2.0',fill=T)
   for(ii in present_species){
     cat(paste('I am currenlty working on this group: ',rownames(species)[ii],sep=''),fill=T)
     sp_mat=extract
-    sp_mat[which(sp_mat!=ii)]=0
+    sp_mat[which(as.matrix(sp_mat)!=ii)]=0
     AA=raster(as.matrix(sp_mat))
+    remove(sp_mat)
+    gc()
     BB=clump(AA)
     remove(AA)
     gc()
@@ -130,7 +132,7 @@ cat('- Analysis started - v2.0',fill=T)
     rownames(species_result)=NULL
     base_num=max(colony_names)
     quad_data=rbind(quad_data,species_result)
-    remove(named_layer,sp_mat)
+    remove(named_layer)
     gc()
   }
 
