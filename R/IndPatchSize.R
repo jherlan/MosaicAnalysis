@@ -142,6 +142,7 @@ quad_data=quad_data[-1,]
 writeJPEG(test,paste(Z,'_BW_with_ID.jpeg',sep=''))
 writeJPEG(copy_master,paste(Z,'_color_with_ID.jpeg',sep=''))
 write.csv(quad_data,paste(Z,'_analysis_output.csv',sep=''))
+gc()
 return(quad_data)
 }
 
