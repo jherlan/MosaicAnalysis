@@ -21,7 +21,7 @@ IndPatchSize=function(X,Y,Z){
   #Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
   #Z='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/RESULT'
 
-cat('- Analysis started -',fill=T)
+cat('- Analysis started - v2.0',fill=T)
 
   list_species=dir(Y,pattern='png')
   if(length(list_species)==1){
@@ -66,8 +66,10 @@ cat('- Analysis started -',fill=T)
     sp_mat[which(sp_mat!=ii)]=0
     AA=raster(as.matrix(sp_mat))
     BB=clump(AA)
+    remove(AA)
+    gc()
     named_layer=t(matrix(BB,ncol(BB),nrow(BB)))
-    remove(AA,BB)
+    remove(BB)
     gc()
     named_layer=named_layer+base_num
     colony_names=unique(array(named_layer))
@@ -120,8 +122,10 @@ cat('- Analysis started -',fill=T)
 
     species_result=as.data.frame(foreach(j=1:length(colony_names),.combine=rbind)%do%{
       pos_2D=as.numeric(round(apply(which(named_layer==colony_names[j],arr.ind=T),2,mean)))
-      cbind(rownames(species)[ii],colony_names[j],pos_2D[2],pos_2D[1],length(which(array(sp_mat[which(named_layer==colony_names[j])])==1)))
+      cbind(rownames(species)[ii],colony_names[j],pos_2D[2],pos_2D[1],length(which(named_layer==colony_names[j])))
     })
+
+
     colnames(species_result)=c('Group','patch_ID','x','y','area_in_pix_num')
     rownames(species_result)=NULL
     base_num=max(colony_names)
