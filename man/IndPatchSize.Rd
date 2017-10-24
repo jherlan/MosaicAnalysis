@@ -4,14 +4,14 @@
 \alias{IndPatchSize}
 \title{Patch size distribution extractor}
 \usage{
-IndPatchSize(X, Y, Z)
+IndPatchSize(X, Y, Z = X)
 }
 \arguments{
 \item{X}{the path of the file to analyses}
 
 \item{Y}{the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot}
 
-\item{Z}{a chain of character to name the *.csv and *.jpg files}
+\item{Z}{a chain of character to name the *.csv and *.jpg files (defaults to X)}
 }
 \value{
 A dataframe (both in R and as a *.csv in the working directory) containing the type and size of each patch present on the analyzed image, also prints a picture with the labeled patches (same resolution as original)
