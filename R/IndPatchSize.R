@@ -21,43 +21,8 @@ IndPatchSize=function(X,Y,Z=X){
   #Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
   #Z='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/RESULT'
 
-cat('- Analysis started - v2.0',fill=T)
-
-  list_species=dir(Y,pattern='png')
-  if(length(list_species)==1){
-    species=t(as.data.frame(readPNG(paste(Y,list_species,sep=''))[1,1,1:3]))
-    colnames(species)=c('red','green','blue')
-    rownames(species)=unlist(strsplit(list_species,'.png'))
-  }else{
-    species=foreach(i=1:length(list_species),.combine=rbind)%do%{
-      profile=readPNG(paste(Y,list_species[i],sep=''))
-      profile[1,1,1:3]
-    }
-    colnames(species)=c('red','green','blue')
-    rownames(species)=unlist(strsplit(list_species,'.png'))}
-  cat('I will be able to identify the following groups: ',paste(rownames(species),collapse=', '),fill=T)
-  # analysis
-
-  masterfile=readPNG(X)
-  copy_master=masterfile
-  cat(paste('I am currenlty working on this image: ',X,sep=''),fill=T)
-  step=1
-  base_num=0
-  quad_data=data.frame('Group'=NA,'patch_ID'=NA,'x'=NA,'y'=NA,'area_in_pix_num'=NA)
-  #quad_data=foreach(ii=1:nrow(species),.combine=rbind)%do%{
-  #extract=simple_triplet_zero_matrix(dim(masterfile)[1],dim(masterfile)[2])
-  extract=Matrix(0,dim(masterfile)[1],dim(masterfile)[2],sparse=T)
-  for(ii in 1:nrow(species)){
-
-    base_num=base_num+1
-    # IS THIS USELESS ?
-    adonde_coral=which(masterfile[,,1]==species[ii,1]&masterfile[,,2]==species[ii,2]&masterfile[,,3]==species[ii,3])
-    if(length(adonde_coral)>1){
-      extract[adonde_coral]=ii
-    }}
-  remove(masterfile,adonde_coral)
-  gc()
-
+  cat('- Analysis started - v3.0',fill=T)
+  extract=Matrix(FromPictoRdata(X,Y,save=FALSE))
   present_species=unique(array(extract))
   present_species=present_species[-which(present_species==0)]
   for(ii in present_species){
@@ -138,12 +103,12 @@ cat('- Analysis started - v2.0',fill=T)
 
 
 
-quad_data=quad_data[-1,]
-writeJPEG(test,paste(Z,'_BW_with_ID.jpeg',sep=''))
-writeJPEG(copy_master,paste(Z,'_color_with_ID.jpeg',sep=''))
-write.csv(quad_data,paste(Z,'_analysis_output.csv',sep=''))
-gc()
-return(quad_data)
+  quad_data=quad_data[-1,]
+  writeJPEG(test,paste(Z,'_BW_with_ID.jpeg',sep=''))
+  writeJPEG(copy_master,paste(Z,'_color_with_ID.jpeg',sep=''))
+  write.csv(quad_data,paste(Z,'_analysis_output.csv',sep=''))
+  gc()
+  return(quad_data)
 }
 
 
