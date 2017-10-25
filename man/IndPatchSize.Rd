@@ -11,7 +11,7 @@ IndPatchSize(X, Y, Z = X)
 
 \item{Y}{the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot}
 
-\item{Z}{a chain of character to name the *.csv and *.jpg files (defaults to X)}
+\item{Z}{a chain of character to name the *.csv and *.jpg files (defaults to \code{X})}
 }
 \value{
 A dataframe (both in R and as a *.csv in the working directory) containing the type and size of each patch present on the analyzed image, also prints a picture with the labeled patches (same resolution as original)

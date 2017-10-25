@@ -3,11 +3,14 @@
 #' This function allows you to extract the size and type of all the patches present in an image
 #' @param X the path of the file to analyses
 #' @param Y the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot
-#' @param Z a chain of character to name the *.csv and *.jpg files (defaults to X)
+#' @param Z a chain of character to name the *.csv and *.jpg files (defaults to \code{X})
 #' @return A dataframe (both in R and as a *.csv in the working directory) containing the type and size of each patch present on the analyzed image, also prints a picture with the labeled patches (same resolution as original)
 #' @keywords Mosaic, image analysis, patch, size
 #' @export
 #' @examples #working on it
+
+#X='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/MAI_2016.png'
+#Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
 
 
 IndPatchSize=function(X,Y,Z=X){
@@ -22,7 +25,7 @@ IndPatchSize=function(X,Y,Z=X){
   #Z='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/RESULT'
 
   cat('- Analysis started - v3.0',fill=T)
-  extract=Matrix(FromPictoRdata(X,Y,save=FALSE))
+  extract=Matrix(FromPictoRdata(X,Y,save=FALSE)[[1]])
   present_species=unique(array(extract))
   present_species=present_species[-which(present_species==0)]
   for(ii in present_species){
