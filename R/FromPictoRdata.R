@@ -40,7 +40,6 @@ FromPictoRdata=function(X,Y,save=FALSE){
   masterfile=readPNG(X)
   copy_master=masterfile
   cat(paste('I am currenlty working on this image: ',X,sep=''),fill=T)
-  step=1
   base_num=0
   quad_data=data.frame('Group'=NA,'patch_ID'=NA,'x'=NA,'y'=NA,'area_in_pix_num'=NA)
   #quad_data=foreach(ii=1:nrow(species),.combine=rbind)%do%{

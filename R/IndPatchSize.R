@@ -25,11 +25,17 @@ IndPatchSize=function(X,Y,Z=X){
   #Z='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/RESULT'
 
   cat('- Analysis started - v3.0',fill=T)
-  extract=Matrix(FromPictoRdata(X,Y,save=FALSE)[[1]])
+  im=FromPictoRdata(X,Y,save=FALSE)
+  extract=Matrix(im[[1]])
+  species=as.character(im[[2]][,1])
   present_species=unique(array(extract))
   present_species=present_species[-which(present_species==0)]
+  base_num=0
+  step=1
+  copy_master=readPNG(X)
+  quad_data=data.frame('Group'=NA,'patch_ID'=NA,'x'=NA,'y'=NA,'area_in_pix_num'=NA)
   for(ii in present_species){
-    cat(paste('I am currenlty working on this group: ',rownames(species)[ii],sep=''),fill=T)
+    cat(paste('I am currenlty working on this group: ',species[ii],sep=''),fill=T)
     sp_mat=extract
     sp_mat[which(as.matrix(sp_mat)!=ii)]=0
     AA=raster(as.matrix(sp_mat))
@@ -92,7 +98,7 @@ IndPatchSize=function(X,Y,Z=X){
 
     species_result=as.data.frame(foreach(j=1:length(colony_names),.combine=rbind)%do%{
       pos_2D=as.numeric(round(apply(which(named_layer==colony_names[j],arr.ind=T),2,mean)))
-      cbind(rownames(species)[ii],colony_names[j],pos_2D[2],pos_2D[1],length(which(named_layer==colony_names[j])))
+      cbind(species[ii],colony_names[j],pos_2D[2],pos_2D[1],length(which(named_layer==colony_names[j])))
     })
 
 
