@@ -2,3 +2,5 @@
 
 export(FromPictoRdata)
 export(IndPatchSize)
+export(Pw_An_VPC)
+export(Pw_An_size_dis)
