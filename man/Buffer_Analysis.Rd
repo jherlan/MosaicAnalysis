@@ -11,6 +11,8 @@ Buffer_Analysis(X, Y = NA, d, scale = 1, minimum_size = 1)
 
 \item{Y}{if \code{X} is the path of the file to analyse, \code{Y} is the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot. If \code{Y=NA}, then \code{X} is considered being a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).}
 
+\item{d}{the distance around each patch that define the buffer.}
+
 \item{scale}{the length of one pixel edge on the image (default to 1).}
 
 \item{minimum_size}{the minimum size of the patches to consider in the analysis (default to 1).}

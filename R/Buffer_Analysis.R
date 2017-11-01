@@ -3,6 +3,7 @@
 #' This function allows you to measure what is within the buffer of a given size of a distribution of contiguous patch. WARNING: You need the Python library GDAL to use this function. Go to: \code{https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/} for more informations on how to proceed.
 #' @param X wether (i) the path of the file to analyse, (ii) a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).
 #' @param Y if \code{X} is the path of the file to analyse, \code{Y} is the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot. If \code{Y=NA}, then \code{X} is considered being a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).
+#' @param d the distance around each patch that define the buffer.
 #' @param scale the length of one pixel edge on the image (default to 1).
 #' @param minimum_size the minimum size of the patches to consider in the analysis (default to 1).
 #' @return A dataframe containing the size and relative buffer composition of each patch considered in the analysis.
