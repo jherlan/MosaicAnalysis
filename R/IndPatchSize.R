@@ -1,6 +1,6 @@
 #' Patch size distribution extractor
 #'
-#' This function allows you to extract the size and type of all the patches present in an image
+#' This function allows you to extract the size and type of all the patches present in an image without using the GDAL library.
 #' @param X the path of the file to analyses
 #' @param Y the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot
 #' @param Z a chain of character to name the *.csv and *.jpg files (defaults to \code{X})

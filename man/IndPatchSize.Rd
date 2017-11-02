@@ -17,7 +17,7 @@ IndPatchSize(X, Y, Z = X)
 A dataframe (both in R and as a *.csv in the working directory) containing the type and size of each patch present on the analyzed image, also prints a picture with the labeled patches (same resolution as original)
 }
 \description{
-This function allows you to extract the size and type of all the patches present in an image
+This function allows you to extract the size and type of all the patches present in an image without using the GDAL library.
 }
 \examples{
 #working on it
