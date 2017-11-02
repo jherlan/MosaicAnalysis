@@ -1,5 +1,5 @@
 # MosaicAnalysis
-This packages contains several functions useful for the analysis of 2D othomosaics and orthoprojections:
+This packages contains several functions useful for the analysis of 2D orthomosaics and orthoprojections:
 
 1 - Buffer_Analysis (Patch Buffer Analysis) 
 This function allows you to measure what is within the buffer of a given size of a distribution of contiguous patch. WARNING: You need the Python library GDAL to use this function. Go to: \code{https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/} for more informations on how to proceed.
