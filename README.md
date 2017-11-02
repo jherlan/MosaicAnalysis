@@ -2,7 +2,7 @@
 This packages contains several functions useful for the analysis of 2D orthomosaics and orthoprojections:
 
 1 - FromPictoRdata (Transform a PNG into a matrix in R)
-This function allows you to transform an annotated PNG file into a matrixwith every cell value corresponding to a a specific type of organism.
+This function allows you to transform an annotated PNG file into a matrix with every cell value corresponding to a a specific type of organism.
 
 2 - IndPatchSize (Patch size distribution extractor)
 This function allows you to extract the size and type of all the patches present in an image.
