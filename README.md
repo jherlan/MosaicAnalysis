@@ -14,4 +14,4 @@ This function allows you to proceed with a power analysis of Point Counts on a a
 This function allows you to proceed with a power analysis for the 5 most commons metric used to describe a size distribution: mean, geometrical mean, kurtosis, skewness, coefficient of variation.
 
 5 - Buffer_Analysis (Patch Buffer Analysis) 
-This function allows you to measure what is within the buffer of a given size of a distribution of contiguous patch. WARNING: You need the Python library GDAL to use this function. Go to: \code{https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/} for more informations on how to proceed.
+This function allows you to measure what is within the buffer of a given size of a distribution of contiguous patch. WARNING: You need the Python library GDAL to use this function. Go to: https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/ for more informations on how to proceed.
