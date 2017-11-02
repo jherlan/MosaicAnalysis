@@ -17,5 +17,5 @@ This function allows you to proceed with a power analysis for the 5 most commons
 This function allows you to measure what is within the buffer of a given size of a distribution of contiguous patch. WARNING: You need the Python library GDAL to use this function. Go to: https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/ for more informations on how to proceed.
 
 ## 6 - PatchDistance (Distance bewteen patch)
-This function allows you to extract the distance bewteen patch as well as their sizes, excluding colonies which are too close from the edges (i.e. wether directly touching an edge or for which an edge is closer than the identified closest neighbor).
+This function allows you to extract the distance bewteen patch as well as their sizes, excluding colonies which are too close from the edges (i.e. wether directly touching an edge or for which an edge is closer than the identified closest neighbor). WARNING: You need the Python library GDAL to use this function. Go to: https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/ for more informations on how to proceed.
 
