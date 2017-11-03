@@ -1,6 +1,6 @@
-#' Patch size distribution extractor using GDAL
+#' Distance bewteen patch
 #'
-#' This function allows you to extract the size and type of all the patches present in an image without using the GDAL library.
+#' This function allows you to extract the distance bewteen patch as well as their sizes, excluding colonies which are too close from the edges (i.e. wether directly touching an edge or for which an edge is closer than the identified closest neighbor).
 #' @param X wether (i) the path of the file to analyse, (ii) a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}) or (iii) a SpatialPolygonDataFrame.
 #' @param Y if \code{X} is the path of the file to analyse, \code{Y} is the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot. If \code{Y=NA}, then \code{X} is considered being a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).
 #' @param Z a chain of character to name the *.csv and *.jpg files (defaults to \code{X})
@@ -13,8 +13,8 @@
 #Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
 
 
-PatchDistance=function(X,Y,Z=X){
-
+PatchDistance=function(X,Y=NA,Z=X){
+  zepath=Z
   require(rgeos)
   require(raster)
   require(foreach)
@@ -84,6 +84,40 @@ PatchDistance=function(X,Y,Z=X){
         gc()
       }
       save(datap,file = 'Polygons.Rdata')
+      X=datap
+      ladistance=gDistance(X,X,byid = T)
+      diag(ladistance)=NA
+
+
+
+      tokeep=foreach(i=1:length(X),.combine=c)%do%{
+        poly_neigh=ladistance[which(rownames(ladistance)==as.numeric(X@polygons[[i]]@ID)),]
+        to_test=X@polygons[[i]]@Polygons[[1]]@coords
+        a=length(which(to_test[,1]-min(poly_neigh,na.rm=T)<0|((X@bbox[1,2]-to_test[,1])-min(poly_neigh,na.rm=T))<0))
+        b=length(which(to_test[,2]-min(poly_neigh,na.rm=T)<0|((X@bbox[2,2]-to_test[,2])-min(poly_neigh,na.rm=T))<0))
+        #cat(c(i,min(poly_neigh,na.rm=T)),fill=T)
+        #cat(c(i,min(to_test,na.rm=T)),fill=T)
+        #cat(min(to_test,na.rm=T)==1,fill=T)
+        if(a!=0|b!=0|min(to_test,na.rm=T)==1){
+          todo=FALSE
+        }else{todo=TRUE}
+        todo
+      }
+      shp.sub <- subset(X, tokeep)
+      plot(X,col=tokeep)
+      lavraiedistance=gDistance(X,shp.sub,byid = T)
+      lavraiedistance[which(lavraiedistance==0)]=NA
+      Area=gArea(X,byid = T)[tokeep]
+      lavraiedistance=cbind(Area,lavraiedistance)
+      colnames(lavraiedistance)=c('Area',X$DN)
+      rownames(lavraiedistance)=X$DN[tokeep]
+      write.csv(lavraiedistance,file='Patches_distance_matrix.csv')
+      return(lavraiedistance)
+
+
+
+    }else{
+      X=X
       ladistance=gDistance(X,X,byid = T)
       diag(ladistance)=NA
 
@@ -108,88 +142,61 @@ PatchDistance=function(X,Y,Z=X){
       lavraiedistance=cbind(Area,lavraiedistance)
       colnames(lavraiedistance)=c('Area',X$DN)
       rownames(lavraiedistance)=X$DN[tokeep]
-      return(lavraiedistance)
-
-
-
-    }else{
-      X=X
-      ladistance=gDistance(X,X,byid = T)
-      diag(ladistance)=NA
-
-      tokeep=foreach(i=1:length(X),.combine=c)%do%{
-        poly_neigh=ladistance[which(rownames(ladistance)==as.numeric(X@polygons[[i]]@ID)),]
-        to_test=X@polygons[[i]]@Polygons[[1]]@coords
-        a=length(which(to_test[,1]-min(poly_neigh,na.rm=T)<0|((X@bbox[1,2]-to_test[,1])-min(poly_neigh,na.rm=T))<0))
-        b=length(which(to_test[,2]-min(poly_neigh,na.rm=T)<0|((X@bbox[2,2]-to_test[,2])-min(poly_neigh,na.rm=T))<0))
-        #cat(c(i,min(poly_neigh,na.rm=T)),fill=T)
-        cat(c(i,min(to_test,na.rm=T)),fill=T)
-        cat(min(to_test,na.rm=T)==1,fill=T)
-        if(a!=0|b!=0|min(to_test,na.rm=T)==1){
-          todo=FALSE
-        }else{todo=TRUE}
-        todo
-      }
-      shp.sub <- subset(X, tokeep)
-      plot(X,col=tokeep)
-      lavraiedistance=gDistance(X,shp.sub,byid = T)
-      lavraiedistance[which(lavraiedistance==0)]=NA
-      Area=gArea(X,byid = T)[tokeep]
-      lavraiedistance=cbind(Area,lavraiedistance)
-      colnames(lavraiedistance)=c('Area',X$DN)
-      rownames(lavraiedistance)=X$DN[tokeep]
+      write.csv(lavraiedistance,file='Patches_distance_matrice.csv')
       return(lavraiedistance)
     }
 
-  }else{X=FromPictoRdata(X,Y)
-  legend=X[[2]]
-  X=X[[1]]
-  to_bind=unique(array(X))[which(unique(array(X))!=0)]
-  foreach(i=1:length(to_bind))%do%{
-    cat(paste('binding ',legend$`Organism type`[i],sep=''),fill=T)
-    data1=matrix(0,nrow(X),ncol(X))
-    data1[which(X==to_bind[i])]=1
-    data1=clump(raster(data1,xmn=1,xmx=ncol(X),ymn=1,ymx=nrow(X)))
-    gc()
-    datap1=gdal_polygonizeR(data1)
-    datap1@bbox=matrix(c(0,0,ncol(X),nrow(X)),2,2)
-    #datap1 <- subset(datap1, gArea(datap1,byid = T)>=0.000001)
-    datap1$DN=paste(legend$`Organism type`[to_bind[i]],datap1$DN,sep='_')
-    if(i==1){
-      datap=datap1
-    }else{
-      datap=rbind(datap,datap1,makeUniqueIDs = T)}
-    rm(data1)
-    rm(datap1)
-    gc()
-  }
-  save(datap,file = 'Polygons.Rdata')
-  X=datap
-  ladistance=gDistance(X,X,byid = T)
-  diag(ladistance)=NA
+  }else{
+    X=FromPictoRdata(X,Y)
+    legend=X[[2]]
+    X=X[[1]]
+    to_bind=unique(array(X))[which(unique(array(X))!=0)]
+    foreach(i=1:length(to_bind))%do%{
+      cat(paste('binding ',legend$`Organism type`[i],sep=''),fill=T)
+      data1=matrix(0,nrow(X),ncol(X))
+      data1[which(X==to_bind[i])]=1
+      data1=clump(raster(data1,xmn=1,xmx=ncol(X),ymn=1,ymx=nrow(X)))
+      gc()
+      datap1=gdal_polygonizeR(data1)
+      datap1@bbox=matrix(c(0,0,ncol(X),nrow(X)),2,2)
+      #datap1 <- subset(datap1, gArea(datap1,byid = T)>=0.000001)
+      datap1$DN=paste(legend$`Organism type`[to_bind[i]],datap1$DN,sep='_')
+      if(i==1){
+        datap=datap1
+      }else{
+        datap=rbind(datap,datap1,makeUniqueIDs = T)}
+      rm(data1)
+      rm(datap1)
+      gc()
+    }
+    save(datap,file = 'Polygons.Rdata')
+    X=datap
+    ladistance=gDistance(X,X,byid = T)
+    diag(ladistance)=NA
 
-  tokeep=foreach(i=1:length(X),.combine=c)%do%{
-    poly_neigh=ladistance[which(rownames(ladistance)==as.numeric(X@polygons[[i]]@ID)),]
-    to_test=X@polygons[[i]]@Polygons[[1]]@coords
-    a=length(which(to_test[,1]-min(poly_neigh,na.rm=T)<0|((X@bbox[1,2]-to_test[,1])-min(poly_neigh,na.rm=T))<0))
-    b=length(which(to_test[,2]-min(poly_neigh,na.rm=T)<0|((X@bbox[2,2]-to_test[,2])-min(poly_neigh,na.rm=T))<0))
-    #cat(c(i,min(poly_neigh,na.rm=T)),fill=T)
-    #cat(c(i,min(to_test,na.rm=T)),fill=T)
-    #cat(min(to_test,na.rm=T)==1,fill=T)
-    if(a!=0|b!=0|min(to_test,na.rm=T)==1){
-      todo=FALSE
-    }else{todo=TRUE}
-    todo
-  }
-  shp.sub <- subset(X, tokeep)
-  plot(X,col=tokeep)
-  lavraiedistance=gDistance(X,shp.sub,byid = T)
-  lavraiedistance[which(lavraiedistance==0)]=NA
-  Area=gArea(X,byid = T)[tokeep]
-  lavraiedistance=cbind(Area,lavraiedistance)
-  colnames(lavraiedistance)=c('Area',X$DN)
-  rownames(lavraiedistance)=X$DN[tokeep]
-  return(lavraiedistance)
+    tokeep=foreach(i=1:length(X),.combine=c)%do%{
+      poly_neigh=ladistance[which(rownames(ladistance)==as.numeric(X@polygons[[i]]@ID)),]
+      to_test=X@polygons[[i]]@Polygons[[1]]@coords
+      a=length(which(to_test[,1]-min(poly_neigh,na.rm=T)<0|((X@bbox[1,2]-to_test[,1])-min(poly_neigh,na.rm=T))<0))
+      b=length(which(to_test[,2]-min(poly_neigh,na.rm=T)<0|((X@bbox[2,2]-to_test[,2])-min(poly_neigh,na.rm=T))<0))
+      #cat(c(i,min(poly_neigh,na.rm=T)),fill=T)
+      #cat(c(i,min(to_test,na.rm=T)),fill=T)
+      #cat(min(to_test,na.rm=T)==1,fill=T)
+      if(a!=0|b!=0|min(to_test,na.rm=T)==1){
+        todo=FALSE
+      }else{todo=TRUE}
+      todo
+    }
+    shp.sub <- subset(X, tokeep)
+    plot(X,col=tokeep)
+    lavraiedistance=gDistance(X,shp.sub,byid = T)
+    lavraiedistance[which(lavraiedistance==0)]=NA
+    Area=gArea(X,byid = T)[tokeep]
+    lavraiedistance=cbind(Area,lavraiedistance)
+    colnames(lavraiedistance)=c('Area',X$DN)
+    rownames(lavraiedistance)=X$DN[tokeep]
+    write.csv(lavraiedistance,file=paste(zepath,'_distance_matrice.csv',sep=''))
+    return(lavraiedistance)
 
 
 
