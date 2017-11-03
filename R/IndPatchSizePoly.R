@@ -77,9 +77,9 @@ IndPatchSizePoly=function(X,Y,Z=X){
     rm(datap1)
     gc()
   }
-  save(datap,file = 'Polygons.Rdata')
+  save(datap,file = paste(zepath,'Polygons.Rdata',sep='_'))
 
-  pdf('label_and_shape.pdf',height = 15,width = 15)
+  pdf(paste(zepath,'label_and_shape.pdf',sep="_"),height = 15,width = 15)
   couleur=sample(c('blue','darkgreen','dodgerblue','darkorange','red','black','purple'),length(datap),replace=TRUE)
   couleur=sample(rainbow(length(datap)),length(datap))
   plot(datap,col='grey',border=couleur,bg='white')
