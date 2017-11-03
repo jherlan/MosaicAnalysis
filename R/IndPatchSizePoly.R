@@ -92,6 +92,3 @@ IndPatchSizePoly=function(X,Y,Z=X){
 }
 
 
-IndPatchSizePoly(X,Y)
-
-
