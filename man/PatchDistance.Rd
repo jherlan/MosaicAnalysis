@@ -2,9 +2,9 @@
 % Please edit documentation in R/PatchDistance.R
 \name{PatchDistance}
 \alias{PatchDistance}
-\title{Patch size distribution extractor using GDAL}
+\title{Distance bewteen patch}
 \usage{
-PatchDistance(X, Y, Z = X)
+PatchDistance(X, Y = NA, Z = X)
 }
 \arguments{
 \item{X}{wether (i) the path of the file to analyse, (ii) a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}) or (iii) a SpatialPolygonDataFrame.}
@@ -17,7 +17,7 @@ PatchDistance(X, Y, Z = X)
 A dataframe (both in R and as a *.csv in the working directory) containing the type and size of each patch present on the analyzed image, also prints a picture with the labeled patches (same resolution as original)
 }
 \description{
-This function allows you to extract the size and type of all the patches present in an image without using the GDAL library.
+This function allows you to extract the distance bewteen patch as well as their sizes, excluding colonies which are too close from the edges (i.e. wether directly touching an edge or for which an edge is closer than the identified closest neighbor).
 }
 \examples{
 #working on it

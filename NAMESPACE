@@ -3,6 +3,7 @@
 export(Buffer_Analysis)
 export(FromPictoRdata)
 export(IndPatchSize)
+export(IndPatchSizePoly)
 export(PatchDistance)
 export(Pw_An_VPC)
 export(Pw_An_size_dis)
