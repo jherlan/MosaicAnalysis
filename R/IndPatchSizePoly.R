@@ -88,6 +88,7 @@ IndPatchSizePoly=function(X,Y,Z=X){
 
   resultat=cbind(suppressWarnings(sapply(strsplit(datap$DN,'_'),function(x) paste(x[-which(!is.na(as.numeric(x)==TRUE))],collapse = '_'))),datap@data,gArea(datap,byid = T),coordinates(datap))
   colnames(resultat)=c('Group','patch_ID','x','y','Area_in_pix_num')
+  write.csv(resultat,file = paste(zepath,'_results.csv',sep='_'),row.names = FALSE)
   return(resultat)
 }
 
