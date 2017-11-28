@@ -1,6 +1,6 @@
 #' Patch size distribution extractor
 #'
-#' This function allows you to extract the size and type of all the patches present in an image without using the GDAL library.
+#' This function allows you to extract the size and type of all the patches present in an image using the GDAL library. WARNING: You need the Python library GDAL to use this function. Go to: \code{https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/} for more informations on how to proceed.
 #' @param X the path of the file to analyses
 #' @param Y the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot
 #' @param Z a chain of character to name the *.csv and *.jpg files (defaults to \code{X})
