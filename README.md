@@ -7,15 +7,18 @@ This function allows you to transform an annotated PNG file into a matrix with e
 ## 2 - IndPatchSize (Patch size distribution extractor)
 This function allows you to extract the size and type of all the patches present in an image.
 
-## 3 - Pw_An_VPC (Power Analysis for Point Counts)
+## 3 - IndPatchSizePoly (Patch size distribution extractor)
+This function allows you to extract the size and type of all the patches present in an image using the Python librayr GDAL. WARNING: You need the Python library GDAL to use this function. Go to: https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/ for more informations on how to proceed.
+
+## 4 - Pw_An_VPC (Power Analysis for Point Counts)
 This function allows you to proceed with a power analysis of Point Counts on a annotated image.
 
-## 4 - Pw_An_size_dis (Power Analysis for Size Distribution)
+## 5 - Pw_An_size_dis (Power Analysis for Size Distribution)
 This function allows you to proceed with a power analysis for the 5 most commons metric used to describe a size distribution: mean, geometrical mean, kurtosis, skewness, coefficient of variation.
 
-## 5 - Buffer_Analysis (Patch Buffer Analysis) 
+## 6 - Buffer_Analysis (Patch Buffer Analysis) 
 This function allows you to measure what is within the buffer of a given size of a distribution of contiguous patch. WARNING: You need the Python library GDAL to use this function. Go to: https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/ for more informations on how to proceed.
 
-## 6 - PatchDistance (Distance bewteen patch)
+## 7 - PatchDistance (Distance bewteen patch)
 This function allows you to extract the distance bewteen patch as well as their sizes, excluding colonies which are too close from the edges (i.e. wether directly touching an edge or for which an edge is closer than the identified closest neighbor). WARNING: You need the Python library GDAL to use this function. Go to: https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/ for more informations on how to proceed.
 
