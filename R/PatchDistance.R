@@ -89,7 +89,7 @@ PatchDistance=function(X,Y=NA,Z=X){
       diag(ladistance)=NA
 
 
-e
+
       tokeep=foreach(i=1:length(X),.combine=c)%do%{
         poly_neigh=ladistance[which(rownames(ladistance)==as.numeric(X@polygons[[i]]@ID)),]
         to_test=X@polygons[[i]]@Polygons[[1]]@coords
