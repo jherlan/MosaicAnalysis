@@ -68,6 +68,7 @@ IndPatchSizePoly=function(X,Y,Z=X){
     datap1=gdal_polygonizeR(data1)
     datap1@bbox=matrix(c(0,0,ncol(X),nrow(X)),2,2)
     #datap1 <- subset(datap1, gArea(datap1,byid = T)>=0.000001)
+    datap1$DN=as.factor(seq(length(datap1$DN)))
     datap1$DN=paste(legend$`Organism type`[to_bind[i]],datap1$DN,sep='_')
     if(i==1){
       datap=datap1
