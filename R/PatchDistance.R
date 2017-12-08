@@ -13,7 +13,7 @@
 #Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
 
 
-PatchDistance=function(X,Y=NA,Z=X){
+PatchDistance=function(X,Y=NA,Z=X,pypath=NULL){
   zepath=Z
   require(rgeos)
   require(raster)

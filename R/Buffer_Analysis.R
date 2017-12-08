@@ -15,7 +15,7 @@
 #X='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/MAI_2016.png'
 #Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
 
-Buffer_Analysis=function(X,Y=NA,d,scale=1,minimum_size=1){
+Buffer_Analysis=function(X,Y=NA,d,scale=1,minimum_size=1,pypath=NULL){
 
   gdal_polygonizeR <- function(x, outshape=NULL, gdalformat = 'ESRI Shapefile',
                                pypath=NULL, readpoly=TRUE, quiet=TRUE) {

@@ -13,7 +13,7 @@
 #Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
 
 
-IndPatchSizePoly=function(X,Y,Z=X){
+IndPatchSizePoly=function(X,Y,Z=X,pypath=NULL){
   zepath=Z
   require(rgeos)
   require(raster)
@@ -23,7 +23,7 @@ IndPatchSizePoly=function(X,Y,Z=X){
     cat('I am using gdal_polygonizer, a function written by John Baumgartner see: https://github.com/johnbaums',fill=T)
     if (isTRUE(readpoly)) require(rgdal)
     if (is.null(pypath)) {
-      pypath <- Sys.which('gdal_polygonize.py')
+      Sys.which('gdal_polygonize.py')
     }
     if (!file.exists(pypath)) stop("Can't find gdal_polygonize.py on your system. You need to install the GDAL library, see:
                                    https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/
