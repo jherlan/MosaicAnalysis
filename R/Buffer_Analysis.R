@@ -18,7 +18,7 @@
 Buffer_Analysis=function(X,Y=NA,d,scale=1,minimum_size=1,pypath=NULL){
 
   gdal_polygonizeR <- function(x, outshape=NULL, gdalformat = 'ESRI Shapefile',
-                               pypath=NULL, readpoly=TRUE, quiet=TRUE) {
+                               pypath=pypath, readpoly=TRUE, quiet=TRUE) {
     cat('I am using gdal_polygonizer, a function written by John Baumgartner see: https://github.com/johnbaums',fill=T)
     if (isTRUE(readpoly)) require(rgdal)
     if (is.null(pypath)) {
