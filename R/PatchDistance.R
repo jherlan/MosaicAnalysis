@@ -145,6 +145,7 @@ PatchDistance=function(X,Y=NA,Z=X,pathtopython=NULL,minsize=0){
       lavraiedistance=cbind(Area,lavraiedistance)
       colnames(lavraiedistance)=c('Area',X$DN)
       rownames(lavraiedistance)=X$DN[tokeep]
+      lavraiedistance=lavraiedistance[-which(lavraiedistance[,1]<=minsize),]
       write.csv(lavraiedistance,file='Patches_distance_matrice.csv')
       return(lavraiedistance)
     }
@@ -199,8 +200,8 @@ PatchDistance=function(X,Y=NA,Z=X,pathtopython=NULL,minsize=0){
     lavraiedistance=cbind(Area,lavraiedistance)
     colnames(lavraiedistance)=c('Area',X$DN)
     rownames(lavraiedistance)=X$DN[tokeep]
-    write.csv(lavraiedistance,file=paste(zepath,'_distance_matrice.csv',sep=''))
     lavraiedistance=lavraiedistance[-which(lavraiedistance[,1]<=minsize),]
+    write.csv(lavraiedistance,file=paste(zepath,'_distance_matrice.csv',sep=''))
     return(lavraiedistance)
 
 
