@@ -13,7 +13,7 @@
 #Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
 
 
-PatchDistance=function(X,Y=NA,Z=X,pathtopython=NULL){
+PatchDistance=function(X,Y=NA,Z=X,pathtopython=NULL,minsize=0){
   zepath=Z
   require(rgeos)
   require(raster)
@@ -200,6 +200,7 @@ PatchDistance=function(X,Y=NA,Z=X,pathtopython=NULL){
     colnames(lavraiedistance)=c('Area',X$DN)
     rownames(lavraiedistance)=X$DN[tokeep]
     write.csv(lavraiedistance,file=paste(zepath,'_distance_matrice.csv',sep=''))
+    lavraiedistance=lavraiedistance[-which(lavraiedistance[,1]<=minsize),]
     return(lavraiedistance)
 
 
