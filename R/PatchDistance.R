@@ -88,13 +88,15 @@ PatchDistance=function(X,Y=NA,Z=X,pathtopython=NULL,minsize=0){
 
       save(datap,file = 'Polygons.Rdata')
       X=datap
+      rm(datap)
+      gc()
       ladistance=gDistance(X,X,byid = T)
       diag(ladistance)=NA
 
 
 
       tokeep=foreach(i=1:length(X),.combine=c)%do%{
-        poly_neigh=ladistance[which(rownames(ladistance)==as.numeric(X@polygons[[i]]@ID)),]
+        poly_neigh=ladistance[which(rownames(ladistance)==X@polygons[[i]]@ID),]
         to_test=X@polygons[[i]]@Polygons[[1]]@coords
         a=length(which(to_test[,1]-min(poly_neigh,na.rm=T)<0|((X@bbox[1,2]-to_test[,1])-min(poly_neigh,na.rm=T))<0))
         b=length(which(to_test[,2]-min(poly_neigh,na.rm=T)<0|((X@bbox[2,2]-to_test[,2])-min(poly_neigh,na.rm=T))<0))
@@ -112,9 +114,9 @@ PatchDistance=function(X,Y=NA,Z=X,pathtopython=NULL,minsize=0){
       lavraiedistance[which(lavraiedistance==0)]=NA
       Area=gArea(X,byid = T)[tokeep]
       lavraiedistance=cbind(Area,lavraiedistance)
-      lavraiedistance=lavraiedistance[-which(lavraiedistance[,1]<=minsize),]
       colnames(lavraiedistance)=c('Area',X$DN)
       rownames(lavraiedistance)=X$DN[tokeep]
+      lavraiedistance=lavraiedistance[-which(lavraiedistance[,1]<=minsize),]
       write.csv(lavraiedistance,file='Patches_distance_matrix.csv')
       return(lavraiedistance)
     }else{
@@ -123,7 +125,7 @@ PatchDistance=function(X,Y=NA,Z=X,pathtopython=NULL,minsize=0){
       diag(ladistance)=NA
 
       tokeep=foreach(i=1:length(X),.combine=c)%do%{
-        poly_neigh=ladistance[which(rownames(ladistance)==as.numeric(X@polygons[[i]]@ID)),]
+        poly_neigh=ladistance[which(rownames(ladistance)==X@polygons[[i]]@ID),]
         to_test=X@polygons[[i]]@Polygons[[1]]@coords
         a=length(which(to_test[,1]-min(poly_neigh,na.rm=T)<0|((X@bbox[1,2]-to_test[,1])-min(poly_neigh,na.rm=T))<0))
         b=length(which(to_test[,2]-min(poly_neigh,na.rm=T)<0|((X@bbox[2,2]-to_test[,2])-min(poly_neigh,na.rm=T))<0))
@@ -174,11 +176,13 @@ PatchDistance=function(X,Y=NA,Z=X,pathtopython=NULL,minsize=0){
     }
     save(datap,file = 'Polygons.Rdata')
     X=datap
+    rm(datap)
+    gc()
     ladistance=gDistance(X,X,byid = T)
     diag(ladistance)=NA
 
     tokeep=foreach(i=1:length(X),.combine=c)%do%{
-      poly_neigh=ladistance[which(rownames(ladistance)==as.numeric(X@polygons[[i]]@ID)),]
+      poly_neigh=ladistance[which(rownames(ladistance)==X@polygons[[i]]@ID),]
       to_test=X@polygons[[i]]@Polygons[[1]]@coords
       a=length(which(to_test[,1]-min(poly_neigh,na.rm=T)<0|((X@bbox[1,2]-to_test[,1])-min(poly_neigh,na.rm=T))<0))
       b=length(which(to_test[,2]-min(poly_neigh,na.rm=T)<0|((X@bbox[2,2]-to_test[,2])-min(poly_neigh,na.rm=T))<0))
