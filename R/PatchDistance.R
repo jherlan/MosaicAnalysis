@@ -112,13 +112,11 @@ PatchDistance=function(X,Y=NA,Z=X,pathtopython=NULL,minsize=0){
       lavraiedistance[which(lavraiedistance==0)]=NA
       Area=gArea(X,byid = T)[tokeep]
       lavraiedistance=cbind(Area,lavraiedistance)
+      lavraiedistance=lavraiedistance[-which(lavraiedistance[,1]<=minsize),]
       colnames(lavraiedistance)=c('Area',X$DN)
       rownames(lavraiedistance)=X$DN[tokeep]
       write.csv(lavraiedistance,file='Patches_distance_matrix.csv')
       return(lavraiedistance)
-
-
-
     }else{
       X=X
       ladistance=gDistance(X,X,byid = T)
