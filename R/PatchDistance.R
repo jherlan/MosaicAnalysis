@@ -13,13 +13,13 @@
 #Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
 
 
-PatchDistance=function(X,Y=NA,Z=X,pypath=NULL){
+PatchDistance=function(X,Y=NA,Z=X,pathtopython=NULL){
   zepath=Z
   require(rgeos)
   require(raster)
   require(foreach)
   gdal_polygonizeR <- function(x, outshape=NULL, gdalformat = 'ESRI Shapefile',
-                               pypath=pypath, readpoly=TRUE, quiet=TRUE) {
+                               pypath=pathtopython, readpoly=TRUE, quiet=TRUE) {
     cat('I am using gdal_polygonizer, a function written by John Baumgartner see: https://github.com/johnbaums',fill=T)
     if (isTRUE(readpoly)) require(rgdal)
     if (is.null(pypath)) {
@@ -84,6 +84,8 @@ PatchDistance=function(X,Y=NA,Z=X,pypath=NULL){
         rm(datap1)
         gc()
       }
+
+
       save(datap,file = 'Polygons.Rdata')
       X=datap
       ladistance=gDistance(X,X,byid = T)
