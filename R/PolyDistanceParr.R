@@ -22,6 +22,7 @@ PolyDistanceParr=function(X,cores=(detectCores()/2)){
       cat(paste('I am using here ',cores,' cores',sep=''),fill=T)
       require(doParallel)
       require(foreach)
+      require(pdist)
       cores=makeCluster(cores)
       registerDoParallel(cores)
       eloign=matrix(0,length(X@polygons),length(X@polygons))
