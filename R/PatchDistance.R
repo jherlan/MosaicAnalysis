@@ -110,7 +110,8 @@ PatchDistance=function(X,Y=NA,Z='your_mosaic',pathtopython=NULL,minsize=0){
       }
       shp.sub <- subset(X, tokeep)
       plot(X,col=tokeep)
-      lavraiedistance=gDistance(X,shp.sub,byid = T)
+      #lavraiedistance=gDistance(X,shp.sub,byid = T)
+      lavraiedistance=ladistance[tokeep,]
       lavraiedistance[which(lavraiedistance==0)]=NA
       Area=gArea(X,byid = T)[tokeep]
       lavraiedistance=cbind(Area,lavraiedistance)
