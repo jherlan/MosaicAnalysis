@@ -4,7 +4,7 @@
 \alias{IndPatchSizePoly}
 \title{Patch size distribution extractor}
 \usage{
-IndPatchSizePoly(X, Y, Z = X)
+IndPatchSizePoly(X, Y, Z = X, pypath = NULL)
 }
 \arguments{
 \item{X}{the path of the file to analyses}

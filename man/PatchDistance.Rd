@@ -4,7 +4,8 @@
 \alias{PatchDistance}
 \title{Distance bewteen patch}
 \usage{
-PatchDistance(X, Y = NA, Z = X)
+PatchDistance(X, Y = NA, Z = "your_mosaic", pathtopython = NULL,
+  minsize = 0)
 }
 \arguments{
 \item{X}{wether (i) the path of the file to analyse, (ii) a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}) or (iii) a SpatialPolygonDataFrame.}

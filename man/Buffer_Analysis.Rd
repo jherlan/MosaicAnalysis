@@ -4,7 +4,8 @@
 \alias{Buffer_Analysis}
 \title{Patch Buffer Analysis}
 \usage{
-Buffer_Analysis(X, Y = NA, d, scale = 1, minimum_size = 1)
+Buffer_Analysis(X, Y = NA, d, scale = 1, minimum_size = 1,
+  pypath = NULL)
 }
 \arguments{
 \item{X}{wether (i) the path of the file to analyse, (ii) a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).}
