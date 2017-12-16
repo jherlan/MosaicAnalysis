@@ -90,10 +90,9 @@ PatchDistance=function(X,Y=NA,Z='your_mosaic',pathtopython=NULL,minsize=0){
       X=datap
       rm(datap)
       gc()
-      ladistance=gDistance(X,X,byid = T)
-      diag(ladistance)=NA
-
-
+      ladistance=PolyDistanceParr(X)
+      rownames(ladistance)=foreach(i=1:length(X),.combine=c)%do%{X@polygons[[i]]@ID}
+      colnames(ladistance)=rownames(ladistance)
 
       tokeep=foreach(i=1:length(X),.combine=c)%do%{
         poly_neigh=ladistance[which(rownames(ladistance)==X@polygons[[i]]@ID),]
@@ -140,8 +139,10 @@ PatchDistance=function(X,Y=NA,Z='your_mosaic',pathtopython=NULL,minsize=0){
       }
       shp.sub <- subset(X, tokeep)
       plot(X,col=tokeep)
-      lavraiedistance=gDistance(X,shp.sub,byid = T)
-      lavraiedistance[which(lavraiedistance==0)]=NA
+      lavraiedistance=PolyDistanceParr(X)
+      rownames(lavraiedistance)=foreach(i=1:length(X),.combine=c)%do%{X@polygons[[i]]@ID}
+      colnames(lavraiedistance)=rownames(lavraiedistance)
+      #lavraiedistance[which(lavraiedistance==0)]=NA
       Area=gArea(X,byid = T)[tokeep]
       lavraiedistance=cbind(Area,lavraiedistance)
       colnames(lavraiedistance)=c('Area',X$DN)
@@ -179,8 +180,9 @@ PatchDistance=function(X,Y=NA,Z='your_mosaic',pathtopython=NULL,minsize=0){
     X=datap
     rm(datap)
     gc()
-    ladistance=gDistance(X,X,byid = T)
-    diag(ladistance)=NA
+    ladistance=PolyDistanceParr(X)
+    rownames(ladistance)=foreach(i=1:length(X),.combine=c)%do%{X@polygons[[i]]@ID}
+    colnames(ladistance)=rownames(ladistance)
 
     tokeep=foreach(i=1:length(X),.combine=c)%do%{
       poly_neigh=ladistance[which(rownames(ladistance)==X@polygons[[i]]@ID),]
@@ -197,7 +199,7 @@ PatchDistance=function(X,Y=NA,Z='your_mosaic',pathtopython=NULL,minsize=0){
     }
     shp.sub <- subset(X, tokeep)
     plot(X,col=tokeep)
-    lavraiedistance=gDistance(X,shp.sub,byid = T)
+    lavraiedistance=ladistance[tokeep,]
     lavraiedistance[which(lavraiedistance==0)]=NA
     Area=gArea(X,byid = T)[tokeep]
     lavraiedistance=cbind(Area,lavraiedistance)
