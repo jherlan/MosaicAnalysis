@@ -65,9 +65,12 @@ IndPatchSizePoly=function(X,Y,Z=X,pythonpath=NULL){
     cat(paste('binding ',legend$`Organism type`[i],sep=''),fill=T)
     data1=matrix(0,nrow(X),ncol(X))
     data1[which(X==to_bind[i])]=1
-    data1=clump(raster(data1,xmn=1,xmx=ncol(X),ymn=1,ymx=nrow(X)))
+    data1=raster(data1,xmn=1,xmx=ncol(X),ymn=1,ymx=nrow(X))
+    data1=clump(data1)
     gc()
     datap1=gdal_polygonizeR(data1)
+    rm(data1)
+    gc()
     datap1@bbox=matrix(c(0,0,ncol(X),nrow(X)),2,2)
     #datap1 <- subset(datap1, gArea(datap1,byid = T)>=0.000001)
     datap1$DN=as.factor(seq(length(datap1$DN)))
@@ -76,7 +79,6 @@ IndPatchSizePoly=function(X,Y,Z=X,pythonpath=NULL){
       datap=datap1
     }else{
       datap=rbind(datap,datap1,makeUniqueIDs = T)}
-    rm(data1)
     rm(datap1)
     gc()
   }
