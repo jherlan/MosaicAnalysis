@@ -23,7 +23,7 @@ IndPatchSizePoly=function(X,Y,Z=X,pythonpath=NULL){
     cat('I am using gdal_polygonizer, a function written by John Baumgartner see: https://github.com/johnbaums',fill=T)
     if (isTRUE(readpoly)) require(rgdal)
     if (is.null(pypath)) {
-      Sys.which('gdal_polygonize.py')
+      pypath <- Sys.which('gdal_polygonize.py')
     }
     if (!file.exists(pypath)) stop("Can't find gdal_polygonize.py on your system. You need to install the GDAL library, see:
                                    https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/
@@ -54,6 +54,8 @@ IndPatchSizePoly=function(X,Y,Z=X,pythonpath=NULL){
     }
     return(NULL)
   }
+
+
 
   X=FromPictoRdata(X,Y)
   legend=X[[2]]
