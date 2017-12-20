@@ -13,13 +13,13 @@
 #Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
 
 
-IndPatchSizePoly=function(X,Y,Z=X,pypath=NULL){
+IndPatchSizePoly=function(X,Y,Z=X,pythonpath=NULL){
   zepath=Z
   require(rgeos)
   require(raster)
   require(foreach)
   gdal_polygonizeR <- function(x, outshape=NULL, gdalformat = 'ESRI Shapefile',
-                               pypath=pypath, readpoly=TRUE, quiet=TRUE) {
+                               pypath=pythonpath, readpoly=TRUE, quiet=TRUE) {
     cat('I am using gdal_polygonizer, a function written by John Baumgartner see: https://github.com/johnbaums',fill=T)
     if (isTRUE(readpoly)) require(rgdal)
     if (is.null(pypath)) {
