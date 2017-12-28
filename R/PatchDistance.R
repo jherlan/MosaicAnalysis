@@ -13,7 +13,7 @@
 #Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
 
 
-PatchDistance=function(X,Y=NA,Z='your_mosaic',pathtopython=NULL,minsize=0){
+PatchDistance=function(X,Y=NA,Z='your_mosaic',pathtopython=NULL,minsize=0,lescoeur=1){
   zepath=Z
   require(rgeos)
   require(raster)
@@ -90,7 +90,7 @@ PatchDistance=function(X,Y=NA,Z='your_mosaic',pathtopython=NULL,minsize=0){
       X=datap
       rm(datap)
       gc()
-      ladistance=PolyDistanceParr(X)
+      ladistance=PolyDistanceParr(X,cores=lescoeur)
       rownames(ladistance)=foreach(i=1:length(X),.combine=c)%do%{X@polygons[[i]]@ID}
       colnames(ladistance)=rownames(ladistance)
 
@@ -139,7 +139,7 @@ PatchDistance=function(X,Y=NA,Z='your_mosaic',pathtopython=NULL,minsize=0){
       }
       shp.sub <- subset(X, tokeep)
       plot(X,col=tokeep)
-      lavraiedistance=PolyDistanceParr(X)
+      lavraiedistance=PolyDistanceParr(X,cores=lescoeur)
       rownames(lavraiedistance)=foreach(i=1:length(X),.combine=c)%do%{X@polygons[[i]]@ID}
       colnames(lavraiedistance)=rownames(lavraiedistance)
       #lavraiedistance[which(lavraiedistance==0)]=NA
@@ -180,7 +180,7 @@ PatchDistance=function(X,Y=NA,Z='your_mosaic',pathtopython=NULL,minsize=0){
     X=datap
     rm(datap)
     gc()
-    ladistance=PolyDistanceParr(X)
+    ladistance=PolyDistanceParr(X,cores=lescoeur)
     rownames(ladistance)=foreach(i=1:length(X),.combine=c)%do%{X@polygons[[i]]@ID}
     colnames(ladistance)=rownames(ladistance)
 
