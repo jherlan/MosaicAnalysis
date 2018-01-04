@@ -10,7 +10,7 @@ Pw_An_VPC(X, Y = NA, Cover = TRUE, Species = TRUE, Copower = 0.9,
 \arguments{
 \item{X}{the path of the file to analyses}
 
-\item{Y}{the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot. If \code{Y=NA}, then \code{X} is considered being a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).}
+\item{Y}{the path to the folder containing named images of unique colors corresponding to a specific type of organism potentially present on the analysed image. If \code{Y=NA}, then \code{X} is considered being a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).}
 
 \item{Cover}{if \code{TRUE} then power analysis is runned for the cover estimation (default to \code{TRUE})}
 

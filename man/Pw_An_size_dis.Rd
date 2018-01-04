@@ -9,7 +9,7 @@ Pw_An_size_dis(X, Y = NA, scale = 1, log10 = TRUE)
 \arguments{
 \item{X}{wether (i) the path of the file to analyse, (ii) a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}), (iii) a list containing the sizes of each organisms belonging to each group.}
 
-\item{Y}{if \code{X} is the path of the file to analyse, \code{Y} is the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot. If \code{Y=NA}, then \code{X} is considered being a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).}
+\item{Y}{if \code{X} the path of the file to analyse, \code{Y} the path to the folder containing named images of unique colors corresponding to a specific type of organism potentially present on the analysed image. If \code{Y=NA}, then \code{X} is considered being a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).}
 
 \item{log10}{if \code{TRUE} the distributions are logged in base 10 (default to \code{TRUE})}
 
@@ -19,7 +19,7 @@ Pw_An_size_dis(X, Y = NA, scale = 1, log10 = TRUE)
 A dataframe with the results of the power analysis for the 5 most commons metric used to describe a size distribution: mean, geometrical mean, kurtosis, skewness, coefficient of variation. The 2.5 and 97.5 percentile of the estimation are returned for each metric and for 10 increasing number of points.
 }
 \description{
-This function allows you to proceed with a power analysis for the 5 most commons metric used to describe a size distribution: mean, geometrical mean, kurtosis, skewness, coefficient of variation.
+This function allows you to proceed with a power analysis for the 5 most commons metrics used to describe a size distribution: mean, geometrical mean, kurtosis, skewness, coefficient of variation.
 }
 \examples{
 #working on it

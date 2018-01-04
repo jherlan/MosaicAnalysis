@@ -4,12 +4,12 @@
 \alias{IndPatchSizePoly}
 \title{Patch size distribution extractor}
 \usage{
-IndPatchSizePoly(X, Y, Z = X, pypath = NULL)
+IndPatchSizePoly(X, Y, Z = X, pythonpath = NULL)
 }
 \arguments{
 \item{X}{the path of the file to analyses}
 
-\item{Y}{the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot}
+\item{Y}{the path to the folder containing named images of unique colors corresponding to a specific type of organism potentially present on the analysed image.}
 
 \item{Z}{a chain of character to name the *.csv and *.jpg files (defaults to \code{X})}
 }

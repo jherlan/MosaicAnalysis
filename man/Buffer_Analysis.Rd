@@ -10,7 +10,7 @@ Buffer_Analysis(X, Y = NA, d, scale = 1, minimum_size = 1,
 \arguments{
 \item{X}{wether (i) the path of the file to analyse, (ii) a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).}
 
-\item{Y}{if \code{X} is the path of the file to analyse, \code{Y} is the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot. If \code{Y=NA}, then \code{X} is considered being a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).}
+\item{Y}{if \code{X} the path of the file to analyse, \code{Y} the path to the folder containing named images of unique colors corresponding to a specific type of organism potentially present on the analysed image. If \code{Y=NA}, then \code{X} is considered being a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).}
 
 \item{d}{the distance around each patch that define the buffer.}
 

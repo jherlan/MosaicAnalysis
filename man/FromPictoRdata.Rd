@@ -7,17 +7,17 @@
 FromPictoRdata(X, Y, save = FALSE)
 }
 \arguments{
-\item{X}{the path of the file to analyses}
+\item{X}{the path to the file to analyses}
 
-\item{Y}{the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot}
+\item{Y}{the path to the folder containing named images of unique colors corresponding to a specific type of organism potentially present on the analysed image.}
 
 \item{save}{\code{TRUE} to save an *.Rdata file containing the obtained matrix (default to \code{FALSE})}
 }
 \value{
-A list containig a matrix with every cell value corresponding to a a specific type of organism present on the plot and a table providing a legend
+A list containing a matrix with every cell value corresponding to a a specific type of organism present on the analyzed image and a table providing the legend.
 }
 \description{
-This function allows you to transform an annotated PNG file into a matrixwith every cell value corresponding to a a specific type of organism
+This function allows you to transform an annotated PNG file into a matrix with each cell value corresponding to a a specific type of organism
 }
 \examples{
 #working on it

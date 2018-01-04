@@ -2,28 +2,27 @@
 % Please edit documentation in R/PolyDistanceParr.R
 \name{PolyDistanceParr}
 \alias{PolyDistanceParr}
-\title{Distance bewteen polygons}
+\title{Distance matrix bewteen polygons}
 \usage{
-PolyDistanceParr(X, Y = NULL, cores = (detectCores()/2))
+PolyDistanceParr(X, cores = 1)
 }
 \arguments{
-\item{X}{wether (i) the path of the file to analyse, (ii) a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}) or (iii) a SpatialPolygonDataFrame.}
+\item{X}{a list of polygon shape object.}
 
-\item{Y}{if \code{X} is the path of the file to analyse, \code{Y} is the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot. If \code{Y=NA}, then \code{X} is considered being a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).}
-
-\item{Z}{a chain of character to name the *.csv and *.jpg files (defaults to \code{X})}
+\item{cores}{the number of CPU cores to use for the analysis, defaults to 1 (CAUTION: each core will have a specific RAM requirement, take that in account very carefully).}
 }
 \value{
-A dataframe (both in R and as a *.csv in the working directory) containing the type and size of each patch present on the analyzed image, also prints a picture with the labeled patches (same resolution as original)
+The distance matrix.
 }
 \description{
-None of what follows make sense
+Generates the distance matrix between a set of polygons
 }
 \examples{
 #working on it
 }
 \keyword{Mosaic,}
 \keyword{analysis,}
+\keyword{distance}
 \keyword{image}
 \keyword{patch,}
-\keyword{size}
+\keyword{size,}

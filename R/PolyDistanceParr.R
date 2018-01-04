@@ -1,11 +1,10 @@
-#' Distance bewteen polygons
+#' Distance matrix bewteen polygons
 #'
-#' None of what follows make sense
-#' @param X wether (i) the path of the file to analyse, (ii) a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}) or (iii) a SpatialPolygonDataFrame.
-#' @param Y if \code{X} is the path of the file to analyse, \code{Y} is the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot. If \code{Y=NA}, then \code{X} is considered being a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).
-#' @param Z a chain of character to name the *.csv and *.jpg files (defaults to \code{X})
-#' @return A dataframe (both in R and as a *.csv in the working directory) containing the type and size of each patch present on the analyzed image, also prints a picture with the labeled patches (same resolution as original)
-#' @keywords Mosaic, image analysis, patch, size
+#' Generates the distance matrix between a set of polygons
+#' @param X a list of polygon shape object.
+#' @param cores the number of CPU cores to use for the analysis, defaults to 1 (CAUTION: each core will have a specific RAM requirement, take that in account very carefully).
+#' @return The distance matrix.
+#' @keywords Mosaic, image analysis, patch, size, distance
 #' @export
 #' @examples #working on it
 
@@ -16,7 +15,7 @@
 
 
 
-PolyDistanceParr=function(X,cores=(detectCores()/2)){
+PolyDistanceParr=function(X,cores=1){
 
 
       cat(paste('I am using here ',cores,' cores',sep=''),fill=T)

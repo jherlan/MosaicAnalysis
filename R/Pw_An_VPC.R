@@ -2,7 +2,7 @@
 #'
 #' This function allows you to proceed with a power analysis of Point Counts on a annotated image.
 #' @param X the path of the file to analyses
-#' @param Y the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot. If \code{Y=NA}, then \code{X} is considered being a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).
+#' @param Y the path to the folder containing named images of unique colors corresponding to a specific type of organism potentially present on the analysed image. If \code{Y=NA}, then \code{X} is considered being a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).
 #' @param Cover if \code{TRUE} then power analysis is runned for the cover estimation (default to \code{TRUE})
 #' @param Species if \code{TRUE} then power analysis is runned for the number of species estimation (default to \code{TRUE})
 #' @param Copower the desired power for the power analysis for the cover estimation (default to \code{0.9})

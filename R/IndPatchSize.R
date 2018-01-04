@@ -2,7 +2,7 @@
 #'
 #' This function allows you to extract the size and type of all the patches present in an image without using the GDAL library.
 #' @param X the path of the file to analyses
-#' @param Y the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot
+#' @param Y the path to the folder containing named images of unique colors corresponding to a specific type of organism potentially present on the analysed image.
 #' @param Z a chain of character to name the *.csv and *.jpg files (defaults to \code{X})
 #' @return A dataframe (both in R and as a *.csv in the working directory) containing the type and size of each patch present on the analyzed image, also prints a picture with the labeled patches (same resolution as original)
 #' @keywords Mosaic, image analysis, patch, size

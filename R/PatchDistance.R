@@ -1,10 +1,13 @@
-#' Distance bewteen patch
+#' Distance between patches
 #'
-#' This function allows you to extract the distance bewteen patch as well as their sizes, excluding colonies which are too close from the edges (i.e. wether directly touching an edge or for which an edge is closer than the identified closest neighbor).
+#' This function allows you to extract the distance between patches as well as their sizes, excluding colonies which are too close from the edges (i.e. wether directly touching an edge or for which an edge is closer than the identified closest neighbor).
 #' @param X wether (i) the path of the file to analyse, (ii) a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}) or (iii) a SpatialPolygonDataFrame.
-#' @param Y if \code{X} is the path of the file to analyse, \code{Y} is the path of the folder containing the named pic which unique color fitting a specific type of organism potentially present on the plot. If \code{Y=NA}, then \code{X} is considered being a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).
+#' @param Y if \code{X} the path of the file to analyse, \code{Y} the path to the folder containing named images of unique colors corresponding to a specific type of organism potentially present on the analysed image. If \code{Y=NA}, then \code{X} is considered being a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).
 #' @param Z a chain of character to name the *.csv and *.jpg files (defaults to \code{X})
-#' @return A dataframe (both in R and as a *.csv in the working directory) containing the type and size of each patch present on the analyzed image, also prints a picture with the labeled patches (same resolution as original)
+#' @param pathtopython specifies the path to the function \code{gdal_polygonize.py}
+#' @param minsize the minimum size to consider a patch in the analysis (in number of pixels)
+#' @param lescoeur the number of CPU cores to use for the analysis, defaults to 1 (CAUTION: each core will have a specific RAM requirement, take that in account very carefully).
+#' @return A dataframe (both in R and as a *.csv in the working directory) containing the type and size of each patch present on the analyzed image and its distances to every other relevant patch.
 #' @keywords Mosaic, image analysis, patch, size
 #' @export
 #' @examples #working on it
