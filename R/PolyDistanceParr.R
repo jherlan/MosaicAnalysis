@@ -29,8 +29,8 @@ PolyDistanceParr=function(X,cores=1,smoother=1){
       for(j in 1:(length(X@polygons)-1)){
         setTxtProgressBar(pb,j)
         eloign[j,(j+1):length(X@polygons)]=foreach(i=(j+1):length(X@polygons),.combine=c,.packages='pdist')%dopar%{
-          p1=X@polygons[[j]]@polygons[[1]]@coords
-            p2=X@polygons[[i]]@polygons[[1]]@coords
+          p1=X@polygons[[j]]@Polygons[[1]]@coords
+            p2=X@polygons[[i]]@Polygons[[1]]@coords
 
           min(pdist(p1[seq(1,nrow(p1),length.out=ceiling((smoother/100)*nrow(p1))),],p2[seq(1,nrow(p2),length.out=ceiling((smoother/100)*nrow(p2))),])@dist)
 
