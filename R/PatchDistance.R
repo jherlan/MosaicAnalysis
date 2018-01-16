@@ -202,7 +202,9 @@ PatchDistance=function(X,Y=NA,Z='your_mosaic',pathtopython=NULL,minsize=0,lescoe
       todo
     }
     shp.sub <- subset(X, tokeep)
+    pdf(paste(zepath,'_included_in_matrix.pdf',sep=''))
     plot(X,col=tokeep)
+    dev.off()
     lavraiedistance=ladistance[tokeep,]
     lavraiedistance[which(lavraiedistance==0)]=NA
     Area=gArea(X,byid = T)[tokeep]
