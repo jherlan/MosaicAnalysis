@@ -15,17 +15,17 @@
 #X='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/MAI_2016.png'
 #Y='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/Legend/'
 
-Buffer_Analysis=function(X,Y=NA,d,scale=1,minimum_size=1,pypath=NULL){
+Buffer_Analysis=function(X,Y=NA,d,scale=1,minimum_size=1,pathtopython=NULL){
 
   gdal_polygonizeR <- function(x, outshape=NULL, gdalformat = 'ESRI Shapefile',
-                               pypath=pypath, readpoly=TRUE, quiet=TRUE) {
+                               pypath=pathtopython, readpoly=TRUE, quiet=TRUE) {
     cat('I am using gdal_polygonizer, a function written by John Baumgartner see: https://github.com/johnbaums',fill=T)
     if (isTRUE(readpoly)) require(rgdal)
     if (is.null(pypath)) {
       pypath <- Sys.which('gdal_polygonize.py')
     }
     if (!file.exists(pypath)) stop("Can't find gdal_polygonize.py on your system. You need to install the GDAL library, see:
-             https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/
+                                   https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/
                                    for more infos.")
     owd <- getwd()
     on.exit(setwd(owd))
@@ -53,7 +53,9 @@ Buffer_Analysis=function(X,Y=NA,d,scale=1,minimum_size=1,pypath=NULL){
     }
     return(NULL)
   }
-
+  
+  
+  
 
 
 
