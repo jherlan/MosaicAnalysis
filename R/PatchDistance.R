@@ -209,7 +209,8 @@ PatchDistance=function(X,Y=NA,Z='your_mosaic',pathtopython=NULL,minsize=0,lescoe
     lavraiedistance=cbind(Area,lavraiedistance)
     colnames(lavraiedistance)=c('Area',X$DN)
     rownames(lavraiedistance)=X$DN[tokeep]
-    lavraiedistance=lavraiedistance[-which(lavraiedistance[,1]<=minsize),]
+    if(length(which(lavraiedistance[,1]<=minsize))!=0){
+    lavraiedistance=lavraiedistance[-which(lavraiedistance[,1]<=minsize),]}
     write.csv(lavraiedistance,file=paste(zepath,'_distance_matrice.csv',sep=''))
     return(lavraiedistance)
 
