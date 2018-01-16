@@ -127,13 +127,13 @@ Buffer_Analysis=function(X,Y=NA,d,scale=1,minimum_size=1,pathtopython=NULL){
   #plot(test, border="blue", col='red',add=TRUE,lty=1,lwd=3)
 
   gc()
-  save(test,file = paste('Polygon_buffer_',buffer_size*scale,sep=''))
+  save(test,file = paste('Polygon_buffer_',buffer_size*scale,'.Rdata',sep=''))
   test=gBuffer(test,byid = T,width = 0) # anti bug device
   datap=gBuffer(datap,byid = T,width = 0) #anti bug device
   kk=gIntersection(test,datap,byid = T,drop_lower_td = T)
   #plot(kk,col='red')
   #gArea(kk,byid = T)
-  save(kk,file =  paste('Polygon_interaction_buffer_',buffer_size,sep=''))
+  save(kk,file =  paste('Polygon_interaction_buffer_',buffer_size,'.Rdata',sep=''))
 
 
   splitted_names=t(matrix(unlist(strsplit(names(gArea(kk,byid = T)),' ')),nrow=2))
