@@ -5,7 +5,7 @@
 \title{Patch Buffer Analysis}
 \usage{
 Buffer_Analysis(X, Y = NA, d, scale = 1, minimum_size = 1,
-  pypath = NULL)
+  pathtopython = NULL)
 }
 \arguments{
 \item{X}{wether (i) the path of the file to analyse, (ii) a matrix where each cell contains a number representing the cell type (as outputed by the function \code{FromPictoRdata}).}
@@ -22,7 +22,7 @@ Buffer_Analysis(X, Y = NA, d, scale = 1, minimum_size = 1,
 A dataframe containing the size and relative buffer composition of each patch considered in the analysis.
 }
 \description{
-This function allows you to measure what is within the buffer of a given size of a distribution of contiguous patch. WARNING: You need the Python library GDAL to use this function. Go to: \code{https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/} for more informations on how to proceed.
+This function allows you to measure the relative composition of the buffer of a distribution of patch. WARNING: You need the Python library GDAL to use this function. Go to: https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/ for more information on how to proceed.
 }
 \examples{
 #working on it

@@ -4,12 +4,14 @@
 \alias{PolyDistanceParr}
 \title{Distance matrix bewteen polygons}
 \usage{
-PolyDistanceParr(X, cores = 1)
+PolyDistanceParr(X, cores = 1, smoother = 1)
 }
 \arguments{
 \item{X}{a list of polygon shape object.}
 
 \item{cores}{the number of CPU cores to use for the analysis, defaults to 1 (CAUTION: each core will have a specific RAM requirement, take that in account very carefully).}
+
+\item{smoother}{a number between 1 and 100 defining the degree of polygonal smoothing to apply, with 1 meaning that 1% of the polygons node are kept, 100 meaning that 100% are kept. (a smaller number will compute faster and/or prevent bugs).}
 }
 \value{
 The distance matrix.
