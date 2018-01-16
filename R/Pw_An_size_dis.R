@@ -59,7 +59,7 @@ Pw_An_size_dis=function(X,Y=NA,scale=1,log10=TRUE){
       result=list()
       #mean
       cat(paste('working on the mean size of ',legend$`Organism type`[sp],sep=''),fill=T)
-      res=cbind(round(seq(3,length(X),length.out = 10)),foreach(size_sample=round(seq(3,length(X),length.out = 10)),.combine=rbind)%do%{
+      res=cbind(round(seq(10,length(X),length.out = 10)),foreach(size_sample=round(seq(10,length(X),length.out = 10)),.combine=rbind)%do%{
         quantile(replicate(5000,mean(sample(X,size_sample))),probs=c(.025,.975))})
       colnames(res)[1]='number of colonies'
       res=t(as.data.frame(res))
@@ -70,7 +70,7 @@ Pw_An_size_dis=function(X,Y=NA,scale=1,log10=TRUE){
 
       #gmean
       cat(paste('working on the geometrical mean size of ',legend$`Organism type`[sp],sep=''),fill=T)
-      res=cbind(round(seq(3,length(X),length.out = 10)),foreach(size_sample=round(seq(3,length(X),length.out = 10)),.combine=rbind)%do%{
+      res=cbind(round(seq(10,length(X),length.out = 10)),foreach(size_sample=round(seq(10,length(X),length.out = 10)),.combine=rbind)%do%{
         quantile(replicate(5000,gmean(sample(X,size_sample))),probs=c(.025,.975))})
       colnames(res)[1]='number of colonies'
       res=t(as.data.frame(res))
@@ -80,8 +80,9 @@ Pw_An_size_dis=function(X,Y=NA,scale=1,log10=TRUE){
 
       #kurtosis
       cat(paste('working on the kurtosis of ',legend$`Organism type`[sp],sep=''),fill=T)
-      res=cbind(round(seq(3,length(X),length.out = 10)),foreach(size_sample=round(seq(3,length(X),length.out = 10)),.combine=rbind)%do%{
-        quantile(replicate(5000,kurtosis(sample(X,size_sample),na.rm=T)),probs=c(.025,.975))})
+      res=cbind(round(seq(10,length(X),length.out = 10)),foreach(size_sample=round(seq(10,length(X),length.out = 10)),.combine=rbind)%do%{
+        quantile(replicate(5000,kurtosis(sample(X,size_sample),na.rm=T)),probs=c(.025,.975))
+        })
       colnames(res)[1]='number of colonies'
       res=t(as.data.frame(res))
       colnames(res)=NULL
@@ -89,8 +90,9 @@ Pw_An_size_dis=function(X,Y=NA,scale=1,log10=TRUE){
 
       #skewness
       cat(paste('working on the skewness of ',legend$`Organism type`[sp],sep=''),fill=T)
-      res=cbind(round(seq(3,length(X),length.out = 10)),foreach(size_sample=round(seq(3,length(X),length.out = 10)),.combine=rbind)%do%{
-        quantile(replicate(5000,skewness(sample(X,size_sample),na.rm=T)),probs=c(.025,.975))})
+      res=cbind(round(seq(10,length(X),length.out = 10)),foreach(size_sample=round(seq(10,length(X),length.out = 10)),.combine=rbind)%do%{
+        quantile(replicate(5000,skewness(sample(X,size_sample),na.rm=T)),probs=c(.025,.975))
+        })
       colnames(res)[1]='number of colonies'
       res=t(as.data.frame(res))
       colnames(res)=NULL
@@ -98,7 +100,7 @@ Pw_An_size_dis=function(X,Y=NA,scale=1,log10=TRUE){
 
       #cv
       cat(paste('working on the coefficient of variation of ',legend$`Organism type`[sp],sep=''),fill=T)
-      res=cbind(round(seq(3,length(X),length.out = 10)),foreach(size_sample=round(seq(3,length(X),length.out = 10)),.combine=rbind)%do%{
+      res=cbind(round(seq(10,length(X),length.out = 10)),foreach(size_sample=round(seq(10,length(X),length.out = 10)),.combine=rbind)%do%{
         quantile(replicate(5000,cv(sample(X,size_sample),na.rm=T)),probs=c(.025,.975))})
       colnames(res)[1]='number of colonies'
       res=t(as.data.frame(res))
@@ -108,8 +110,12 @@ Pw_An_size_dis=function(X,Y=NA,scale=1,log10=TRUE){
 
       names(result)=c('mean','geometrical mean', 'kurtosis', 'skewness','coefficient of variation')
       result
-    }}
+    }
+    
+    
+    }
 
+  
   names(Result)=legend$`Organism type`
   names(size_distribution)=legend$`Organism type`
   R=list(size_distribution,Result)
