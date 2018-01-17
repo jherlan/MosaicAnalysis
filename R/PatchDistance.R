@@ -7,7 +7,7 @@
 #' @param pathtopython specifies the path to the function \code{gdal_polygonize.py}
 #' @param minsize the minimum size to consider a patch in the analysis (in number of pixels)
 #' @param lescoeur the number of CPU cores to use for the analysis, defaults to 1 (CAUTION: each core will have a specific RAM requirement, take that in account very carefully).
-#' @param smoothing a number between 1 and 100 defining the degree of polygonal smoothing to apply, with 1 meaning that 1% of the polygons node are kept, 100 meaning that 100% are kept. (a smaller number will compute faster and/or prevent bugs).
+#' @param smoothing a number between 1 and 100 defining the degree of polygonal smoothing to apply, with 1 meaning that 1\% of the polygons node are kept, 100 meaning that 100\% are kept. (a smaller number will compute faster and/or prevent bugs).
 #' @return A dataframe (both in R and as a *.csv in the working directory) containing the type and size of each patch present on the analyzed image and its distances to every other relevant patch.
 #' @keywords Mosaic, image analysis, patch, size
 #' @export
