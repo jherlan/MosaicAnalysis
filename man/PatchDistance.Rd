@@ -20,7 +20,7 @@ PatchDistance(X, Y = NA, Z = "your_mosaic", pathtopython = NULL,
 
 \item{lescoeur}{the number of CPU cores to use for the analysis, defaults to 1 (CAUTION: each core will have a specific RAM requirement, take that in account very carefully).}
 
-\item{smoothing}{a number between 1 and 100 defining the degree of polygonal smoothing to apply, with 1 meaning that 1% of the polygons node are kept, 100 meaning that 100% are kept. (a smaller number will compute faster and/or prevent bugs).}
+\item{smoothing}{a number between 1 and 100 defining the degree of polygonal smoothing to apply, with 1 meaning that 1\% of the polygons node are kept, 100 meaning that 100\% are kept. (a smaller number will compute faster and/or prevent bugs).}
 }
 \value{
 A dataframe (both in R and as a *.csv in the working directory) containing the type and size of each patch present on the analyzed image and its distances to every other relevant patch.
