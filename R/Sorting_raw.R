@@ -11,7 +11,7 @@
 
 
 Sorting_raw=function(X,email=NA,erase=TRUE){
-  require(exif)
+  require(exifr)
   require(sendmailR)
 
   old=dir(X)
@@ -24,7 +24,7 @@ Sorting_raw=function(X,email=NA,erase=TRUE){
   for(i in 1:length(to_move)){
     cat('\014')
     cat(paste('Working on ', site,', ', round(i / length(to_move) * 100,2), '% completed'))
-    f=read_exif(paste(X,sep='/',to_move[i]))$focal_length
+    f=read_exif(paste(X,sep='/',to_move[i]))$FocalLength
     new_name=paste(site,'_',f,'mm_',i,'.JPG',sep='')
     if(dir.exists(paste(X,paste(site,'_',f,'mm',sep=''),sep='/'))!=TRUE){dir.create(paste(X,paste(site,'_',f,'mm',sep=''),sep='/'))}
     file.copy(paste(X,sep='/',to_move[i]),
