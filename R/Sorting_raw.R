@@ -11,7 +11,7 @@
 
 
 Sorting_raw=function(X,email=NA,erase=TRUE){
-  require(exifr)
+  require(exif)
   require(sendmailR)
 
   old=dir(X)
