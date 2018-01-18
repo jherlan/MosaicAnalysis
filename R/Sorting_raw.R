@@ -36,9 +36,9 @@ Sorting_raw=function(X,email=NA,erase=TRUE){
   }
 
   if(!is.na(email)){
-    from <- "<ssautomaticprocessor@SSlab.com>"
+    from <- "<ssautomaticsorting@SSlab.com>"
     to <- paste('<',email,'>',sep='')
-    subject <-lesfichiers[fi]
+    subject <-site
     body <- list(paste("I am done processing ",X,sep=''))
     sendmail(from, to, subject, body, control=list(smtpServer="ASPMX.L.GOOGLE.COM"))
   }
