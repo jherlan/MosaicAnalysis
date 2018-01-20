@@ -10,9 +10,16 @@
 #' @export
 #' @examples #working on it
 
+#X='/Users/yoaneynaud/Documents/Mosaic Analysis Package Class/Annotated_image_lots_of_colonies.png'
+#Y='/Users/yoaneynaud/Documents/Mosaic Analysis Package Class/legend/'
+
+
+
+
 Pw_An_size_dis=function(X,Y=NA,scale=1,log10=TRUE){
   require(raster)
   require(moments)
+  require(Matrix)
 
   gmean <- function(x, na.rm=TRUE){
     exp(sum(log(x[x > 0]), na.rm=na.rm) / length(x))
@@ -20,18 +27,37 @@ Pw_An_size_dis=function(X,Y=NA,scale=1,log10=TRUE){
 
   if(mode(X)!='list'){
     if(is.na(Y)){X=X}else{
-      raw=FromPictoRdata(X,Y)
-      X=raw[[1]]
+      raw=FromPictoRdata(X,Y,save=FALSE)
+      X=Matrix(raw[[1]])
       legend=raw[[2]]
     }
 
-    size_distribution=foreach(n=1:nrow(legend))%do%{
-      if(n>1) rm(Xsub)
+
+    cat('Exracting size distribution',fill=T)
+
+    size_distribution=list()
+      for(n in 1:nrow(legend)){
+      if(n>1)rm(Xsub)
       gc()
-      Xsub=X
-      Xsub[which(Xsub!=legend$ID[n])]=0
-      Xsub=as.matrix(clump(raster(Xsub)))
-      if(log10==FALSE){as.numeric(table(Xsub))*scale}else{log10(as.numeric(table(Xsub))*scale)}
+      Xsu=X
+      Xsu[which(as.matrix(Xsu)!=legend$ID[n])]=0
+
+      Xsubi=raster(as.matrix(Xsu))
+      remove(Xsu)
+      gc()
+      Xsub=clump(Xsubi)
+      remove(Xsubi)
+
+
+      Xsub=t(matrix(Xsub,ncol(Xsub),nrow(Xsub)))
+
+
+      if(log10==FALSE){
+        size_distribution[[n]]=as.numeric(table(Xsub))*scale
+      }else{
+        size_distribution[[n]]=log10(as.numeric(table(Xsub))*scale)
+      }
+
     }
   }else{
     size_distribution=X
@@ -43,7 +69,7 @@ Pw_An_size_dis=function(X,Y=NA,scale=1,log10=TRUE){
       colnames(legend)[1]="Organism type"
     }}
 
-
+cat('Metrics are now being compiled',fill=T)
 
   Result=foreach(sp=1:nrow(legend))%do%{
     X=size_distribution[[sp]]
