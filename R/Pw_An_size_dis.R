@@ -111,11 +111,11 @@ Pw_An_size_dis=function(X,Y=NA,scale=1,log10=TRUE){
       names(result)=c('mean','geometrical mean', 'kurtosis', 'skewness','coefficient of variation')
       result
     }
-    
-    
+
+
     }
 
-  
+
   names(Result)=legend$`Organism type`
   names(size_distribution)=legend$`Organism type`
   R=list(size_distribution,Result)
