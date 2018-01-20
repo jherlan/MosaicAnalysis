@@ -7,9 +7,10 @@
 #' @param log10 if \code{TRUE} the distributions are logged in base 10 (default to \code{TRUE})
 #' @return A dataframe with the results of the power analysis for the 5 most commons metric used to describe a size distribution: mean, geometrical mean, kurtosis, skewness, coefficient of variation. The 2.5 and 97.5 percentile of the estimation are returned for each metric and for 10 increasing number of points.
 #' @keywords Mosaic, image analysis, power analysis, cover, species, patch size, size distributions.
+#' @export
 #' @examples #working on it
 
-Pw_Ana_size_distr=function(X,Y=NA,scale=1,log10=TRUE){
+Pw_An_size_dis=function(X,Y=NA,scale=1,log10=TRUE){
   require(raster)
   require(moments)
 

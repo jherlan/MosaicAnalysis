@@ -5,6 +5,7 @@
 #' @param email the email to witch updates will be sent.
 #' @param erase if \code{TRUE} the original folders cointaining the pictures are erased.
 #' @keywords Mosaic, image analysis, patch, size
+#' @export
 #' @examples #working on it
 
 
