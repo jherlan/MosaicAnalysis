@@ -9,7 +9,7 @@
 #' @keywords Mosaic, image analysis, power analysis, cover, species, patch size, size distributions.
 #' @examples #working on it
 
-Pw_An_size_distr=function(X,Y=NA,scale=1,log10=TRUE){
+Pw_Ana_size_distr=function(X,Y=NA,scale=1,log10=TRUE){
   require(raster)
   require(moments)
 
