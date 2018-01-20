@@ -4,9 +4,7 @@
 #' @param X The path to the folder containing the pictures. Note: The name of this folder will be used to name the newly created fodlers and in the new pictures' name.
 #' @param email the email to witch updates will be sent.
 #' @param erase if \code{TRUE} the original folders cointaining the pictures are erased.
-#' @return
 #' @keywords Mosaic, image analysis, patch, size
-#' @export
 #' @examples #working on it
 
 

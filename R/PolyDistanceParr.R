@@ -6,7 +6,6 @@
 #' @param smoother a number between 1 and 100 defining the degree of polygonal smoothing to apply, with 1 meaning that 1% of the polygons node are kept, 100 meaning that 100% are kept. (a smaller number will compute faster and/or prevent bugs).
 #' @return The distance matrix.
 #' @keywords Mosaic, image analysis, patch, size, distance
-#' @export
 #' @examples #working on it
 
 #X='/Users/yoaneynaud/Desktop/Travail/Post_doc_scripps/Mosaic/test_for_package/MAI_2016.png'
